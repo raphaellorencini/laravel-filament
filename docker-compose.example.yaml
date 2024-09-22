@@ -10,7 +10,7 @@ services:
     environment:
       - DB_HOST=laravel-db
       - DB_PORT=3306
-      - DB_DATABASE=laravel_base
+      - DB_DATABASE=laravel_filament
       - DB_USERNAME=root
       - DB_PASSWORD=root
     volumes:
@@ -52,7 +52,7 @@ services:
     volumes:
       - ./docker/mysql:/var/lib/mysql
     environment:
-      - MYSQL_DATABASE=laravel_base
+      - MYSQL_DATABASE=laravel_filament
       - MYSQL_ROOT_PASSWORD=root
     networks:
       - laravel-network
