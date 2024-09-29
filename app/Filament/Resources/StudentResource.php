@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Exports\StudentsExport;
 use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Models\Classes;
@@ -115,6 +116,13 @@ class StudentResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    BulkAction::make('export')
+                        ->label('Export Records')
+                        ->icon('heroicon-o-document-arrow-down')
+                        ->action(function (Collection $records) {
+                            $students = new StudentsExport($records);
+                            return $students->download('students.xlsx');
+                        })
                 ]),
             ]);
     }
